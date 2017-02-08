@@ -64,8 +64,10 @@ while running:
         #扫描QUIT事件
         if event.type == QUIT:
             running = False
+        #移动挡板
         elif event.type == MOUSEMOTION:
             paddle.rect.centerx = event.pos[0]
+    #球碰撞挡板后弹回
     if pygame.sprite.spritecollide(paddle, ballGroup, False):
         myBall.speed[1] = -myBall.speed[1]
 

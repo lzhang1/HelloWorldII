@@ -43,8 +43,8 @@
       <file leaf-file-name="ray17_5.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ray17_5.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="429">
-              <caret line="95" column="19" lean-forward="false" selection-start-line="95" selection-start-column="19" selection-end-line="95" selection-end-column="19" />
+            <state relative-caret-position="9">
+              <caret line="54" column="48" lean-forward="true" selection-start-line="54" selection-start-column="48" selection-end-line="54" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -497,7 +497,14 @@
       <option name="project" value="LOCAL" />
       <updated>1486563804902</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="update commet">
+      <created>1486566669892</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1486566669892</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TodoView">
@@ -542,7 +549,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update README.md" />
     <MESSAGE value="add ball example" />
-    <option name="LAST_COMMIT_MESSAGE" value="add ball example" />
+    <MESSAGE value="update commet" />
+    <option name="LAST_COMMIT_MESSAGE" value="update commet" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -688,8 +696,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ray17_5.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="95" column="19" lean-forward="false" selection-start-line="95" selection-start-column="19" selection-end-line="95" selection-end-column="19" />
+        <state relative-caret-position="9">
+          <caret line="54" column="48" lean-forward="true" selection-start-line="54" selection-start-column="48" selection-end-line="54" selection-end-column="48" />
           <folding />
         </state>
       </provider>
