@@ -25,7 +25,8 @@ class MyBallClass(pygame.sprite.Sprite):
             self.speed[1] = -self.speed[1]
             score += 1
             score_surf = score_font.render(str(score),1,(0,0,0))
-#定义一个MyPaddleClass球拍类
+
+#定义一个MyPaddleClass球拍类（挡板）
 class MyPaddleClass(pygame.sprite.Sprite):
     def __init__(self, location =[0,0]):
         pygame.sprite.Sprite.__init__(self)
@@ -49,7 +50,7 @@ ball_speed = [10,5]
 myBall = MyBallClass('wackyball.png',ball_speed,[50,50])
 ballGroup = pygame.sprite.Group(myBall)
 paddle = MyPaddleClass([270,400])
-lives = 3
+lives = 1
 score = 0
 score_font = pygame.font.Font('IMPRISHA.TTF',50)
 score_surf = score_font.render(str(score),1,(0,0,0))
@@ -71,6 +72,7 @@ while running:
 
     myBall.move()
 
+    #绘制球，挡板，(生命)球数以及更新分数
     if not done:
         screen.blit(myBall.image, myBall.rect)
         screen.blit(paddle.image, paddle.rect)
@@ -80,8 +82,10 @@ while running:
             screen.blit(myBall.image, [width - 40*i, 20])
         pygame.display.flip()
 
+    #当球落到屏幕底部以下，生命数减1
     if myBall.rect.top >= screen.get_rect().bottom:
         lives -= 1
+        #如果没有生命数，游戏结束
         if lives == 0:
             final_text1 = "Game Over"
             final_text2 = "Your final score is: "+str(score)
@@ -89,12 +93,14 @@ while running:
             ft1_surf = ft1_font.render(final_text1, 1,(0,0,0))
             ft2_font = pygame.font.Font("IMPRISHA.TTF",50)
             ft2_surf = ft1_font.render(final_text2, 1,(0,0,0))
+            #文字居中显示
             screen.blit(ft1_surf,[screen.get_width()/2 - ft1_surf.get_width()/2,100])
             screen.blit(ft2_surf,[screen.get_width()/2 - ft2_surf.get_width()/2,200])
             pygame.display.flip()
             done = True
+        #重新开始
         else:
-            pygame.time.delay(2000)
+            pygame.time.delay(1000)
             myBall.rect.topleft = [50,50]
 
 pygame.quit()
