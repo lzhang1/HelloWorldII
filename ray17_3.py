@@ -39,6 +39,8 @@ class Ball(pygame.sprite.Sprite):
         self.rect = newpos
 
 my_ball = Ball('beach_ball.png',[10,0],[20,20])
+pygame.time.set_timer(pygame.USEREVENT, 1000)
+direction = 1
 running = True
 while running:
     for event in pygame.event.get():
@@ -46,14 +48,19 @@ while running:
         if event.type == QUIT:
             running = False
         #扫描KEY事件
-        elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP:
-                my_ball.rect.top = my_ball.rect.top - 10
-            elif event.key == pygame.K_DOWN:
-                my_ball.rect.top = my_ball.rect.top + 10
+        # elif event.type == KEYDOWN:
+        #     if event.key == pygame.K_UP:
+        #         my_ball.rect.top = my_ball.rect.top - 10
+        #     elif event.key == pygame.K_DOWN:
+        #         my_ball.rect.top = my_ball.rect.top + 10
         #扫描鼠标事件
-        elif event.type == MOUSEMOTION:
-            my_ball.rect.center = event.pos
+        # elif event.type == MOUSEMOTION:
+        #     my_ball.rect.center = event.pos
+        #扫描定时器
+        elif event.type == USEREVENT:
+            my_ball.rect.centery = my_ball.rect.centery + (30*direction)
+            if my_ball.rect.top < 0 or my_ball.rect.bottom > screen.get_rect().bottom:
+                direction = -direction
 
         clock.tick(30)
         screen.blit(background, (0,0))
