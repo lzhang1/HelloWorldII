@@ -9,5 +9,7 @@ class MyWindowClass(QtWidgets.QWidget):
 
 app = QtWidgets.QApplication(sys.argv)
 myWindow = MyWindowClass()
+myWindow.resize(250,150)
+myWindow.setWindowTitle('example')
 myWindow.show()
 sys.exit(app.exec_())
