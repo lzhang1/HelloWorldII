@@ -20,11 +20,15 @@ class MyBallClass(pygame.sprite.Sprite):
         self.rect = self.rect.move(self.speed)
         if self.rect.left <= 0 or self.rect.right >= screen.get_width():
             self.speed[0] = -self.speed[0]
+            hit_wall.play()
 
         if self.rect.top <= 0:
             self.speed[1] = -self.speed[1]
             score += 1
             score_surf = score_font.render(str(score),1,(255,255,255))
+            get_point.play()
+
+
 
 #定义一个MyPaddleClass球拍类（挡板）
 class MyPaddleClass(pygame.sprite.Sprite):
@@ -56,6 +60,18 @@ score = 0
 score_font = pygame.font.Font('IMPRISHA.TTF',50)
 score_surf = score_font.render(str(score),1,(255,255,255))
 score_pos = [10,10]
+#载入声音
+hit_wall = pygame.mixer.Sound("hit_wall.wav")
+hit_wall.set_volume(0.4)
+get_point = pygame.mixer.Sound("get_point.wav")
+get_point.set_volume(0.2)
+splat = pygame.mixer.Sound("splat.wav")
+splat.set_volume(0.6)
+new_life = pygame.mixer.Sound("new_life.wav")
+new_life.set_volume(0.5)
+bye = pygame.mixer.Sound("game_over.wav")
+bye.set_volume(0.6)
+
 done = False
 running = True
 while running:
@@ -74,6 +90,7 @@ while running:
         myBall.speed[1] = -myBall.speed[1]
 
 
+
     myBall.move()
 
     #绘制球，挡板，(生命)球数以及更新分数
@@ -85,12 +102,15 @@ while running:
             width = screen.get_width()
             screen.blit(myBall.image, [width - 40*i, 20])
         pygame.display.flip()
+        #pygame.time.delay(1000)
 
     #当球落到屏幕底部以下，生命数减1
     if myBall.rect.top >= screen.get_rect().bottom:
         lives -= 1
+        splat.play()
         #如果没有生命数，游戏结束
         if lives == 0:
+            bye.play()
             final_text1 = "Game Over"
             final_text2 = "Your final score is: "+str(score)
             ft1_font = pygame.font.Font("IMPRISHA.TTF",70)
@@ -105,6 +125,7 @@ while running:
         #重新开始
         else:
             pygame.time.delay(1000)
+            new_life.play()
             myBall.rect.topleft = [50,50]
 
 pygame.quit()

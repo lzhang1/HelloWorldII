@@ -18,13 +18,18 @@ class MyBallClass(pygame.sprite.Sprite):
     def move(self):
         global score, score_surf, score_font
         self.rect = self.rect.move(self.speed)
-        if self.rect.left <= 0 or self.rect.right >= screen.get_width():
+        if self.rect.left < 0 or self.rect.right > screen.get_width():
             self.speed[0] = -self.speed[0]
+            if self.rect.top < screen.get_height():
+                hit_wall.play()
 
         if self.rect.top <= 0:
             self.speed[1] = -self.speed[1]
             score += 1
             score_surf = score_font.render(str(score),1,(255,255,255))
+            get_point.play()
+
+
 
 #定义一个MyPaddleClass球拍类（挡板）
 class MyPaddleClass(pygame.sprite.Sprite):
@@ -43,6 +48,24 @@ backgroundImageFile = 'timg.jpg'
 
 # 初始化
 pygame.init()
+pygame.mixer.init()
+
+#载入声音
+pygame.mixer.music.load("bg_music.mp3")
+pygame.mixer.music.set_volume(0.3)
+pygame.mixer.music.play(-1)
+hit = pygame.mixer.Sound("hit_paddle.wav")
+hit.set_volume(0.4)
+new_life = pygame.mixer.Sound("new_life.wav")
+new_life.set_volume(0.5)
+splat = pygame.mixer.Sound("splat.wav")
+splat.set_volume(0.6)
+hit_wall = pygame.mixer.Sound("hit_wall.wav")
+hit_wall.set_volume(0.4)
+get_point = pygame.mixer.Sound("get_point.wav")
+get_point.set_volume(0.2)
+bye = pygame.mixer.Sound("game_over.wav")
+bye.set_volume(0.6)
 
 screen = pygame.display.set_mode(size)
 clock = pygame.time.Clock()
@@ -51,12 +74,14 @@ background = pygame.image.load(backgroundImageFile).convert()
 myBall = MyBallClass('wackyball.png',ball_speed,[50,50])
 ballGroup = pygame.sprite.Group(myBall)
 paddle = MyPaddleClass([270,400])
-lives = 1
+lives = 3
 score = 0
+
 score_font = pygame.font.Font('IMPRISHA.TTF',50)
 score_surf = score_font.render(str(score),1,(255,255,255))
 score_pos = [10,10]
 done = False
+
 running = True
 while running:
     clock.tick(30)
@@ -69,10 +94,11 @@ while running:
         #移动挡板
         elif event.type == MOUSEMOTION:
             paddle.rect.centerx = event.pos[0]
+
     #球碰撞挡板后弹回
     if pygame.sprite.spritecollide(paddle, ballGroup, False):
+        hit.play()
         myBall.speed[1] = -myBall.speed[1]
-
 
     myBall.move()
 
@@ -83,14 +109,19 @@ while running:
         screen.blit(score_surf,score_pos)
         for i in range(lives):
             width = screen.get_width()
-            screen.blit(myBall.image, [width - 40*i, 20])
+            screen.blit(myBall.image, [width - 45*i, 20])
         pygame.display.flip()
 
     #当球落到屏幕底部以下，生命数减1
     if myBall.rect.top >= screen.get_rect().bottom:
+        if not done:
+            splat.play()
         lives -= 1
         #如果没有生命数，游戏结束
-        if lives == 0:
+        if lives <= 0:
+            if not done:
+                pygame.time.delay(1000)
+                bye.play()
             final_text1 = "Game Over"
             final_text2 = "Your final score is: "+str(score)
             ft1_font = pygame.font.Font("IMPRISHA.TTF",70)
@@ -102,9 +133,14 @@ while running:
             screen.blit(ft2_surf,[screen.get_width()/2 - ft2_surf.get_width()/2,200])
             pygame.display.flip()
             done = True
+            pygame.mixer.music.fadeout(2000)
         #重新开始
         else:
             pygame.time.delay(1000)
+            new_life.play()
             myBall.rect.topleft = [50,50]
+            screen.blit(myBall.image, myBall.rect)
+            pygame.display.flip()
+            pygame.time.delay(1000)
 
 pygame.quit()

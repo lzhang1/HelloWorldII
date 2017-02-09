@@ -1,22 +1,9 @@
-# Listing_20-1.py
-# Copyright Warren & Csrter Sande, 2013
-# Released under MIT license   http://www.opensource.org/licenses/mit-license.php
-# Version $version  ----------------------------
+# -*- coding: utf-8 -*-
 
-# Minimum code for a PyQt program
+# Form implementation generated from reading ui file 'Listing_20-1.py'
+#
+# Created: Thu Feb 09 18:24:55 2017
+#      by: PyQt5 UI code generator 5.3.2
+#
+# WARNING! All changes made in this file will be lost!
 
-import sys
-from PyQt4 import QtCore, QtGui, uic     # Import the Qt libraries we need
-
-form_class = uic.loadUiType("MyFirstGui.ui")[0]   # Load the UI we created in Designer
-
-# Class definition for the main window
-class MyWindowClass(QtGui.QMainWindow, form_class):
-    def __init__(self, parent=None):
-        QtGui.QMainWindow.__init__(self, parent)
-        self.setupUi(self)
-        
-app = QtGui.QApplication(sys.argv)   # PtQt program to show our window
-myWindow = MyWindowClass()           # Make an instance of the window class
-myWindow.show()                         # Start the program and 
-app.exec_()                             #   display the GUI window
