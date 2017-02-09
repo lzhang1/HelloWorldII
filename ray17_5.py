@@ -10,7 +10,7 @@ import sys
 class MyBallClass(pygame.sprite.Sprite):
     def __init__(self, image_file, speed, location):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load(image_file).convert()
+        self.image = pygame.image.load(image_file).convert_alpha()
         self.rect = self.image.get_rect()
         self.rect.left, self.rect.top = location
         self.speed = speed
@@ -24,7 +24,7 @@ class MyBallClass(pygame.sprite.Sprite):
         if self.rect.top <= 0:
             self.speed[1] = -self.speed[1]
             score += 1
-            score_surf = score_font.render(str(score),1,(0,0,0))
+            score_surf = score_font.render(str(score),1,(255,255,255))
 
 #定义一个MyPaddleClass球拍类（挡板）
 class MyPaddleClass(pygame.sprite.Sprite):
@@ -54,7 +54,7 @@ paddle = MyPaddleClass([270,400])
 lives = 1
 score = 0
 score_font = pygame.font.Font('IMPRISHA.TTF',50)
-score_surf = score_font.render(str(score),1,(0,0,0))
+score_surf = score_font.render(str(score),1,(255,255,255))
 score_pos = [10,10]
 done = False
 running = True
