@@ -31,15 +31,15 @@ class MyPaddleClass(pygame.sprite.Sprite):
     def __init__(self, location =[0,0]):
         pygame.sprite.Sprite.__init__(self)
         image_surface = pygame.surface.Surface([100,20])
-        image_surface.fill([0,0,0])
+        image_surface.fill([127,0,0])
         self.image = image_surface.convert()
         self.rect = self.image.get_rect()
         self.rect.left, self.rect.top = location
 
 #定义窗口大小
 size = [640,480]
-#定义窗口背景颜色白色
-backgroundColor = [255,255,255]
+#定义窗口背景图片
+backgroundImageFile = 'timg.jpg'
 
 # 初始化
 pygame.init()
@@ -47,6 +47,7 @@ pygame.init()
 screen = pygame.display.set_mode(size)
 clock = pygame.time.Clock()
 ball_speed = [10,5]
+background = pygame.image.load(backgroundImageFile).convert()
 myBall = MyBallClass('wackyball.png',ball_speed,[50,50])
 ballGroup = pygame.sprite.Group(myBall)
 paddle = MyPaddleClass([270,400])
@@ -59,7 +60,8 @@ done = False
 running = True
 while running:
     clock.tick(30)
-    screen.fill(backgroundColor)
+    #绘制背景图
+    screen.blit(background,(0,0))
     for event in pygame.event.get():
         #扫描QUIT事件
         if event.type == QUIT:
