@@ -1,23 +1,16 @@
-# Listing_20-2.py
-# Copyright Warren & Csrter Sande, 2013
-# Released under MIT license   http://www.opensource.org/licenses/mit-license.php
-# Version $version  ----------------------------
-
-# Adding an event handler for the button
+# -*- coding: utf-8 -*-
 
 import sys
-from PyQt4 import QtCore, QtGui, uic
+from PyQt5 import QtWidgets
+import MyFirstGui
 
-form_class = uic.loadUiType("MyFirstGui.ui")[0]
 
-# Class definition for the main window
-class MyWindowClass(QtGui.QMainWindow, form_class):
+class MyWindowClass(QtWidgets.QWidget, MyFirstGui):
     def __init__(self, parent=None):
-        QtGui.QMainWindow.__init__(self, parent)
+        super(MyWindowClass,self).__init__(parent)
         self.setupUi(self)
-        self.pushButton.clicked.connect(self.button_clicked)  # connect the event handler
+        self.pushButton.clicked.connect(self.button_clicked)
 
-    # the event handler for the button click
     def button_clicked(self):
         x = self.pushButton.x()
         y = self.pushButton.y()
@@ -25,7 +18,10 @@ class MyWindowClass(QtGui.QMainWindow, form_class):
         y += 50
         self.pushButton.move(x, y)     # Move the button when we click it
 
-app = QtGui.QApplication(sys.argv)
+app = QtWidgets.QApplication(sys.argv)
 myWindow = MyWindowClass()
+label=QtWidgets.QLabel(myWindow)
+label.setText("hello world")
+myWindow.resize(640,480)
 myWindow.show()
-app.exec_()
+sys.exit(app.exec_())
