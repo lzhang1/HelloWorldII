@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="838d0d2e-f4fb-4c9d-a86f-2ab6d5b45264" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PyQT.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ray20_2.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ray20_3.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyFirstGui.ui" afterPath="$PROJECT_DIR$/MyFirstGui.ui" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ray20_1.py" afterPath="$PROJECT_DIR$/ray20_1.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -666,7 +661,14 @@
       <option name="project" value="LOCAL" />
       <updated>1486712731423</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="update  pyqt5">
+      <created>1486953102368</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1486953102368</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TodoView">
