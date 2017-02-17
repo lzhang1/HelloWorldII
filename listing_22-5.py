@@ -7,5 +7,12 @@
 
 the_file = open('notes.txt', 'w')
 the_file.write("Wake up\n")
-the_file.write("Watch cartoons")
+the_file.writelines("Watch cartoons\n")
+the_file.writelines("Byebye")
 the_file.close()
+
+file = open("notes.txt","r")
+for line in file.readlines():
+    print line
+
+file.close()

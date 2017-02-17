@@ -2,10 +2,10 @@
 
 import sys
 from PyQt5 import QtWidgets
-import MyFirstGui
+from MyFirstGui import Ui_MainWindow
 
 
-class MyWindowClass(QtWidgets.QWidget, MyFirstGui):
+class MyWindowClass(QtWidgets.QWidget, Ui_MainWindow):
     def __init__(self, parent=None):
         super(MyWindowClass,self).__init__(parent)
         self.setupUi(self)

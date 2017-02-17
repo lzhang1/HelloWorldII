@@ -14,8 +14,11 @@ from cards import Card    # import the Cards module
 # use nested for loops to make a deck of cards
 deck = []                                           
 for suit_id in range(1, 5):                           
-    for rank_id in range(1, 14):    
-        deck.append(Card(suit_id, rank_id))        
+    for rank_id in range(1, 14):
+        new_card = Card(suit_id, rank_id)
+        if rank_id == 8:
+            new_card.value = 50
+        deck.append(new_card)
 
 # draw 5 cards from the deck to make a hand
 hand = []                                           
@@ -26,4 +29,4 @@ for cards in range(0, 5):
 
 print    
 for card in hand:
-    print card.short_name, '=' ,card.long_name, "  Value:", card.value
+    print card.short_name, '=' ,card.long_name, "Value:", card.value

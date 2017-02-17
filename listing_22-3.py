@@ -7,5 +7,12 @@
 
 todo_list = open('notes.txt', 'a')     # Opens the file in append mode
 todo_list.write('\nSpend allowance')   # Adds our string to the end
-todo_list.close()                      # Closes the file
+todo_list.close() # Closes the file
 
+
+file = open('notes.txt','r')
+read_list = file.readlines()
+for i in range(1, len(read_list)):
+    print "No {0:d}: {1:s}".format(i,read_list[i])
+
+file.close()

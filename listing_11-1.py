@@ -12,3 +12,11 @@ for multiplier in range (5, 8):                                    #B
 
 #A This inner loop prints a single table
 #B This outer loop runs 3 iterations, with values 5, 6, 7
+
+
+numRow = int(raw_input("How many rows?"))
+numCol = int(raw_input("How many cols?"))
+for i in range(numCol):
+    for j in range(numRow):
+        print "*",
+    print

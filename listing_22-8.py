@@ -6,10 +6,11 @@
 # Hangman game using PyQt
 
 import sys
-from PyQt4 import QtCore, QtGui, uic
+from PyQt5 import QtWidgets
 import random
+from hangman import Ui_MainWindow
 
-form_class = uic.loadUiType("hangman.ui")[0]
+# form_class = uic.loadUiType("hangman.ui")[0]
 
 # Find the locations(s) of guessed letters in the secret word
 def find_letters(letter, a_string):                                  
@@ -42,9 +43,10 @@ def dashes(word):
             new_string += i                                          
     return new_string                                                
 
-class MyWidget(QtGui.QMainWindow, form_class):
+class MyWidget(QtWidgets.QWidget, Ui_MainWindow):
     def __init__(self, parent=None):
-        QtGui.QMainWindow.__init__(self, parent)
+        # QtGui.QMainWindow.__init__(self, parent)
+        super(MyWidget, self).__init__(parent)
         self.setupUi(self)
         self.btn_guess.clicked.connect(self.btn_guess_clicked)           # Connect event handlers
         self.actionExit.triggered.connect(self.menuExit_selected)        #
@@ -112,7 +114,7 @@ class MyWidget(QtGui.QMainWindow, form_class):
     def menuExit_selected(self):
         self.close()
 
-app = QtGui.QApplication(sys.argv)
+app = QtWidgets.QApplication(sys.argv)
 myapp = MyWidget(None)
 myapp.show()
 app.exec_()

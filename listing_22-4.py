@@ -10,3 +10,13 @@ new_file.write("Eat supper\n")
 new_file.write("Play soccer\n")
 new_file.write("Go to bed")
 new_file.close()
+
+file = open("my_new_notes.txt","r")
+line = file.readline()
+while line:
+    print "line: %s"%line
+    line = file.readline()
+
+file.close()
+
+
